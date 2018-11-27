@@ -1,0 +1,92 @@
+﻿
+@model dynamic
+@{
+    ViewBag.Title = "Details";
+}
+<div class="col-lg-12">
+    <div class="col-lg-10">
+    <h2>@Model.title</h2>
+    <a href="@Html.Raw("Model.homepage")">@Model.homepage</a>
+    </div>
+
+    <div class="col-lg-2">
+        <h2>
+        <button class="btn btn-danger" onclick="goBack()"> Back  </button>
+        </h2>
+    </div>
+
+</div>
+
+
+<div class="container">
+    <div class="col-lg-12">
+        <div class="col-lg-3">
+            <h4>
+                <small>
+                    <b>GENRE:</b>
+                    @foreach (var genre in Model.genres)
+                    {
+                        @Html.Raw(genre.name + " ")
+                    }
+                </small>
+            </h4>
+        </div>
+        <div class="col-lg-3">
+            <h4>
+                <small>
+                    <b>RELEASE DATE: </b>@Model.release_date
+                </small>
+            </h4>
+        </div>
+        <div class="col-lg-3">
+            <h4>
+                <small>
+                    <b>DURATION: </b>@Model.runtime minutes
+                </small>
+            </h4>
+        </div>
+        <div class="col-lg-3">
+            <h4>
+                <small>
+                    <b>LANGUAGE: </b>@Model.original_language.ToString().ToUpper()
+                </small>
+            </h4>
+        </div>
+
+    </div>
+    </div>
+<div class="col-lg-12">
+    <div class="col-lg-4" style="align-content:center;">
+        <img src="@Html.Raw("http://image.tmdb.org/t/p/w185/"+Model.poster_path)" hspace="20" />
+        <p>&nbsp;</p>
+    </div>
+    <div class="col-lg-8">
+        <br />
+        <b>SUMMARY:</b><p align="justify">@Model.overview</p>
+
+
+        <div class="col-lg-12 text-center">
+            <b>CAST</b>
+
+            @foreach (var cast in ViewBag.Cast)
+            {
+                <div class="col-lg-12 text-center">
+                    @Html.Raw("<b>" + cast.name + "</b> &nbsp;&nbsp; as &nbsp;&nbsp; " + @cast.character)
+                </div>
+            }
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+

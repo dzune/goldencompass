@@ -1,0 +1,62 @@
+﻿@model   dynamic
+@using System.IO
+
+@{
+    ViewBag.Title = "Golden Compasss-Dzune Lao";
+}
+
+<div class="container">
+    <div class="col-lg-12">
+
+
+        <form action="@Url.Action("Search","Home")" method="get">
+            <div class="row">
+                <h1>theMovie World DB</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 text-right">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="txtsearch" id="txtsearch" placeholder="Search Your Title Here" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit">Search</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+        <div class="col-lg-12">&nbsp;</div>
+        @if (ViewBag.ResultOk == true)
+        {
+
+            foreach (var item in Model.results)
+            {
+
+                <div class="col-lg-6" style="height:350px;">
+                    <div class="col-lg-6">
+                        <img src="@Html.Raw("http://image.tmdb.org/t/p/w185/"+item.poster_path)" hspace="20" />
+                        <p>&nbsp;</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <span class="label label-danger">@item.vote_average</span><h4>@Html.Raw(item.title)</h4>
+                        <span><small>Release Date: </small><em>@(item.release_date != "" ? Convert.ToDateTime(item.release_date).ToString("dd MMM yyyy") : "")</em></span>
+                        <br /><br />
+                        <p>@(item.overview.ToString().Length<200?item.overview:item.overview.ToString().Substring(0,200))</p>
+                        <br />
+                        <h4><b><small><a href="@Url.Action("Details","Movie", new { id = item.id })">more info...</a></small></b></h4>
+                    </div>
+                </div>
+                @*<p>&nbsp;</p>*@
+
+            }
+
+        }
+        else
+        {
+            <p align="center">&nbsp;</p>
+        }
+
+    </div>
+</div>
