@@ -34,7 +34,7 @@
             foreach (var item in Model.results)
             {
 
-                
+                 <div class="col-lg-6" style="height:350px;">
                     <div class="col-lg-6">
                         <img src="@Html.Raw("http://image.tmdb.org/t/p/w185/"+item.poster_path)" hspace="20" />
                         <p>&nbsp;</p>
@@ -47,7 +47,7 @@
                         <br />
                         <h4><b><small><a href="@Url.Action("Details","Movie", new { id = item.id })">more info...</a></small></b></h4>
                     </div>
-                
+                </div>
                <p>&nbsp;</p>
 
             }
